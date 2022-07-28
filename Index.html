@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    const bigmouth = 'I\'ve got no right to take my place…';
+console.log(bigmouth);
+/* The '\'makes the following character "skip" the code, meaning it will
+recognized as a string even if normally it wouldn't be so. */  
+   
+   const example = 'my name';
+   const greeting = `Hello ${example}`;
+
+   /* when inserting a variable into a string, one must use the template 
+literal, which works using a   ``    character instead of '' */
+
+    /* You can also combine two strings like this:*/
+
+    const one = 'Hello';
+    const two = 'What is your name?';
+    const combine = `${one} ${two}`;
+    console.log(combine);
+    // The Output will be 'Hello, what is your name?'
+    
+    /*The outcome will be the same if we use " + " */
+
+    const plus = one + ", " + two;
+    console.log(plus);
+    //here we'll have once again 'Hello, what is your name?'
+
+    /* The only difference between using the plus sign and Template
+    Template literals is readability */
+
+
+</script> 
+</body>
+</html>
