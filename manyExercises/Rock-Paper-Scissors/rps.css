@@ -64,21 +64,86 @@ main {
     background-color: #601522;
 }
 
+.container.options-inner div:hover {
+    background-color: #fff;
+    color: #601522;
+    height: 100px;
+    width: 170px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .container.options-inner div i {
     font-size: 2rem;
 }
 
-.score-container {
+.score-container-outer {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 30%;
     border: 2px solid red;
     width: 60%;
+    padding: 20px;
 }
 
-.scorediv{
-    width: 60%;
+.score-container-inner {
+    width: 50%;
+    height: 100%;
+
+}
+
+.scorediv {
+    width: 100%;
     height: 50%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-division {
+    height: 2px;
+    width: 100%;
+    background-color: #000;
+}
+
+.score-container-division {
+    height: 100%;
+    width: 2px;
+    background-color: #000;
+}
+
+.winner-container {
+    width: 50%;
+    height: 100%;
+}
+
+.currentwinner {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+.winner-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.score-container-outer p {
+    font-size: 2rem;
+    width: 70%;
+}
+
+.scoresquare{
+    width:30px;
+    height: 30px;
     border: 2px solid red;
+}
+
+.score-container-outer p{
+    text-align: center;
 }

@@ -12,22 +12,40 @@
 
 <body>
     <main>
+
         <div class="container title">
             <h1>ROCK X PAPER X SCISSORS</h1>
         </div>
-        <img src="" alt="">
-        <div class="container options-outer">
+
+        <section class="container options-outer">
             <h2>Choose your fighter!</h2>
-            <div class ="container options-inner">
+            <div class="container options-inner">
                 <div class="option-div1 rock-div"><i class="fa-solid fa-hill-rockslide"></i></div>
                 <div class="option-div2 paper-div"><i class="fa-solid fa-paper-plane"></i></div>
                 <div class="option-div3 scissors-div"><i class="fa-solid fa-scissors"></i></div>
             </div>
-        </div>
-        <div class="score-container">
-            <div class="scorediv"></div>
-            <div class="scorediv"></div>
-        </div>
+        </section>
+
+        <section class="score-container-outer">
+            <div class="score-container-inner">
+                <div class="scorediv">
+                    <p>Player - <span class="playerscore"></span></p>
+                    <div class="scoresquare"></div>
+                </div>
+                <div class="score-division"></div>
+                <div class="scorediv">
+                    <p class="ai" >A.I. - <span class="pcscore"></span></p>
+                    <div class="scoresquare"></div>
+                </div>
+            </div>
+            <div class="score-container-division"></div>
+            <div class="winner-container">
+                <h2 class="currentwinner">Current Winner</h2>
+                <div class="winner-icon"></div>
+            </div>
+            </>
+        </section>
+
     </main>
 </body>
 
