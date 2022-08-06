@@ -65,12 +65,17 @@ main {
 }
 
 .container.options-inner div:hover {
-    background-color: #fff;
+    background-color: #000;
     color: #601522;
     height: 100px;
     width: 170px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.container.options-inner div:active{
+    background-color: #000;
+    color: #fff;
 }
 
 .container.options-inner div i {
@@ -142,6 +147,11 @@ main {
     width:30px;
     height: 30px;
     border: 2px solid red;
+    font-size:2rem;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
 }
 
 .score-container-outer p{
