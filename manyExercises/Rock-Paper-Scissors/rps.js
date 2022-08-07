@@ -33,15 +33,15 @@ function Capitalize(str) {
 }
 
 function clearClass(element) {
-    const arrayclass = element.classList;
-    console.log(arrayclass);
-    const arraynew = new Array(arrayclass.length);
-    for (i = 0; i < arrayclass.length; i++) {
-      arraynew[i] = arrayclass[i];
-    }
-    for (i = 0; i < arraynew.length; i++) {
-      element.classList.remove(arraynew[i]);
-    }
+  const arrayclass = element.classList;
+  console.log(arrayclass);
+  const arraynew = new Array(arrayclass.length);
+  for (i = 0; i < arrayclass.length; i++) {
+    arraynew[i] = arrayclass[i];
+  }
+  for (i = 0; i < arraynew.length; i++) {
+    element.classList.remove(arraynew[i]);
+  }
 }
 
 let scorePc = 0;
