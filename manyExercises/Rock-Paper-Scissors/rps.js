@@ -32,10 +32,24 @@ function Capitalize(str) {
   return str;
 }
 
+function clearClass(element) {
+    const arrayclass = element.classList;
+    console.log(arrayclass);
+    const arraynew = new Array(arrayclass.length);
+    for (i = 0; i < arrayclass.length; i++) {
+      arraynew[i] = arrayclass[i];
+    }
+    for (i = 0; i < arraynew.length; i++) {
+      element.classList.remove(arraynew[i]);
+    }
+}
+
 let scorePc = 0;
 let scorePlayer = 0;
 
 function playrock() {
+  clearClass(faiconpc);
+  clearClass(faiconpl);
   playerChoice = "rock";
   game();
   lefticon.appendChild(faiconpl);
@@ -43,12 +57,16 @@ function playrock() {
   faiconpl.classList.add(`fa-hill-rockslide`);
 }
 function playpaper() {
+  clearClass(faiconpc);
+  clearClass(faiconpl);
   playerChoice = "paper";
   faiconpl.classList.add(`fa-solid`);
   faiconpl.classList.add(`fa-paper-plane`);
   game();
 }
 function playscissors() {
+  clearClass(faiconpc);
+  clearClass(faiconpl);
   playerChoice = "scissors";
   faiconpl.classList.add(`fa-solid`);
   faiconpl.classList.add(`fa-scissors`);
@@ -74,6 +92,8 @@ function playRound() {
   pcChoice = pcChoice.toLocaleLowerCase();
   if (pcChoice === playerChoice) {
     console.log(`That's a draw!! We both chose ${Capitalize(pcChoice)}`); //Draw case.
+    faiconpl.classList.add("draw");
+    faiconpc.classList.add("draw");
   } else if (
     (pcChoice === "rock" && playerChoice === "paper") ||
     (pcChoice === "paper" && playerChoice === "scissors") ||
@@ -84,8 +104,8 @@ function playRound() {
         playerChoice
       )} beats ${Capitalize(pcChoice)}.` // Player victory case.
     );
-    lefticon.classList.toggle("green-icon");
-    righticon.classList.toggle("red-icon");
+    faiconpl.classList.add("green-icon");
+    faiconpc.classList.add("red-icon");
     scorePlayer++; //player score rises.
   } else if (
     (pcChoice === "paper" && playerChoice === "rock") ||
@@ -97,29 +117,15 @@ function playRound() {
         playerChoice // Pc victory case.
       )}.`
     );
-    lefticon.classList.toggle("red-icon");
-    righticon.classList.toggle("green-icon");
+    faiconpl.classList.add("red-icon");
+    faiconpc.classList.add("green-icon");
     scorePc++; //Pc score rises.
   } else {
     console.log("Something went terribly wrong.");
   }
 }
 
-function resetstat() {
-  if (faiconpc.classList.contains("green-icon")) {
-    faiconpc.classList.toggle("green-icon");
-  }
-  if (faiconpc.classList.contains("red-icon")) {
-    faiconpc.classList.toggle("red-icon");
-  }
-  if (faiconpl.classList.contains("green-icon")) {
-    faiconpl.classList.toggle("green-icon");
-  }
-  if (faiconpl.classList.contains("green-icon")) { faiconpl.classList.toggle("green-icon"); }
-}
-
 function game() {
-  resetstat();
   getComputerChoice();
   playRound();
   getwinner();
@@ -162,7 +168,9 @@ const tryAgain = document.createElement("button");
 const wins = document.createElement("p");
 tryAgain.textContent = "Try Again?";
 tryAgain.classList.add("tryagain");
-const announce = document.querySelector(".announce"); tryAgain.addEventListener("click", replay); const lefticon = document.querySelector(".playericon");
+const announce = document.querySelector(".announce");
+tryAgain.addEventListener("click", replay);
+const lefticon = document.querySelector(".playericon");
 const righticon = document.querySelector(".pcicon");
 const faiconpc = document.createElement("i");
 const faiconpl = document.createElement("i");
