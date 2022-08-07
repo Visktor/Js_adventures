@@ -2,18 +2,26 @@ let rnum;
 let pcChoice;
 function getComputerChoice() {
   rnum = Math.floor(Math.random() * 3) + 1; // Generates a random number from 1 to 3 and assigns it to the variable 'rnum'.
+
   if (rnum === 1) {
     pcChoice = "Rock";
+    righticon.appendChild(faiconpc);
+    faiconpc.classList.add(`fa-solid`);
+    faiconpc.classList.add(`fa-hill-rockslide`);
   } else if (rnum === 2) {
     pcChoice = "Paper";
+    righticon.appendChild(faiconpc);
+    faiconpc.classList.add(`fa-solid`);
+    faiconpc.classList.add(`fa-paper-plane`);
   } else if (rnum === 3) {
     pcChoice = "Scissors";
+    righticon.appendChild(faiconpc);
+    faiconpc.classList.add(`fa-solid`);
+    faiconpc.classList.add(`fa-scissors`);
   } else {
     console.log("ERROR: Something went wrong while computing my choice");
   }
-
-  return pcChoice;
-  /* Assigns a choice to every possible number and returns that choice. Also throws an error if some other
+  return pcChoice; /* Assigns a choice to every possible number and returns that choice. Also throws an error if some other
    value shows up. */
 }
 
@@ -27,28 +35,38 @@ function Capitalize(str) {
 let scorePc = 0;
 let scorePlayer = 0;
 
-const rock = document.querySelector(".rock-div");
-rock.addEventListener("click", () => {
+function playrock() {
   playerChoice = "rock";
   game();
-});
-const paper = document.querySelector(".paper-div");
-paper.addEventListener("click", () => {
+  lefticon.appendChild(faiconpl);
+  faiconpl.classList.add(`fa-solid`);
+  faiconpl.classList.add(`fa-hill-rockslide`);
+}
+function playpaper() {
   playerChoice = "paper";
+  faiconpl.classList.add(`fa-solid`);
+  faiconpl.classList.add(`fa-paper-plane`);
   game();
-});
-const scissors = document.querySelector(".scissors-div");
-scissors.addEventListener("click", () => {
+}
+function playscissors() {
   playerChoice = "scissors";
+  faiconpl.classList.add(`fa-solid`);
+  faiconpl.classList.add(`fa-scissors`);
   game();
-});
+}
+
+const rock = document.querySelector(".rock-div");
+rock.addEventListener("click", playrock);
+const paper = document.querySelector(".paper-div");
+paper.addEventListener("click", playpaper);
+const scissors = document.querySelector(".scissors-div");
+scissors.addEventListener("click", playscissors);
 //associating the option divs/images with the options themselves.
 
 const icon = document.querySelector(".winner-icon");
 
 const playerscore = document.querySelector(".scoresquare.player");
 playerscore.textContent = scorePlayer;
-
 const pcscore = document.querySelector(".scoresquare.pc");
 pcscore.textContent = scorePc;
 
@@ -66,6 +84,8 @@ function playRound() {
         playerChoice
       )} beats ${Capitalize(pcChoice)}.` // Player victory case.
     );
+    lefticon.classList.toggle("green-icon");
+    righticon.classList.toggle("red-icon");
     scorePlayer++; //player score rises.
   } else if (
     (pcChoice === "paper" && playerChoice === "rock") ||
@@ -77,19 +97,35 @@ function playRound() {
         playerChoice // Pc victory case.
       )}.`
     );
+    lefticon.classList.toggle("red-icon");
+    righticon.classList.toggle("green-icon");
     scorePc++; //Pc score rises.
   } else {
     console.log("Something went terribly wrong.");
   }
 }
 
+function resetstat() {
+  if (faiconpc.classList.contains("green-icon")) {
+    faiconpc.classList.toggle("green-icon");
+  }
+  if (faiconpc.classList.contains("red-icon")) {
+    faiconpc.classList.toggle("red-icon");
+  }
+  if (faiconpl.classList.contains("green-icon")) {
+    faiconpl.classList.toggle("green-icon");
+  }
+  if (faiconpl.classList.contains("green-icon")) { faiconpl.classList.toggle("green-icon"); }
+}
+
 function game() {
+  resetstat();
   getComputerChoice();
   playRound();
   getwinner();
+  endgame();
   pcscore.textContent = scorePc;
   playerscore.textContent = scorePlayer;
-
 }
 
 function getwinner() {
@@ -102,21 +138,46 @@ function getwinner() {
   }
 }
 
-if (scorePc === 5) {
-  console.log("This time it's your loss");
-  replay();
+function endgame() {
+  if (Number(scorePc) === 5) {
+    announce.appendChild(wins);
+    wins.textContent = "You Lose.";
+    announce.appendChild(tryAgain);
+    rock.removeEventListener("click", playrock);
+    paper.removeEventListener("click", playpaper);
+    scissors.removeEventListener("click", playscissors);
+  }
+
+  if (Number(scorePlayer) === 5) {
+    announce.appendChild(wins);
+    wins.textContent = "You Win.";
+    announce.appendChild(tryAgain);
+    rock.removeEventListener("click", playrock);
+    paper.removeEventListener("click", playpaper);
+    scissors.removeEventListener("click", playscissors);
+  }
 }
-if (scorePlayer === 5) {
-  console.log("You've won the game.");
-  replay();
-}
+
+const tryAgain = document.createElement("button");
+const wins = document.createElement("p");
+tryAgain.textContent = "Try Again?";
+tryAgain.classList.add("tryagain");
+const announce = document.querySelector(".announce"); tryAgain.addEventListener("click", replay); const lefticon = document.querySelector(".playericon");
+const righticon = document.querySelector(".pcicon");
+const faiconpc = document.createElement("i");
+const faiconpl = document.createElement("i");
+righticon.appendChild(faiconpc);
+lefticon.appendChild(faiconpl);
 
 function replay() {
   //replay or end game.
-  let playAgain = prompt("Do you wish to play again? Y/N - ");
-  if (playAgain.toLowerCase() === "yes" || playAgain.toLowerCase() === "y") {
-    scorePlayer = 0;
-    scorePc = 0;
-  } else {
-  }
+  scorePlayer = 0;
+  scorePc = 0;
+  playerscore.textContent = scorePlayer;
+  pcscore.textContent = scorePc;
+  rock.addEventListener("click", playrock);
+  paper.addEventListener("click", playpaper);
+  scissors.addEventListener("click", playscissors);
+  announce.removeChild(wins);
+  announce.removeChild(tryAgain);
 }
